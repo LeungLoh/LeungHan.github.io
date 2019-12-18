@@ -31,7 +31,7 @@
 <meta property="og:description" content="关于Linux的基本介绍以及简单命令的概述">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-05-08T02:01:44.000Z">
-<meta property="article:modified_time" content="2018-04-26T14:30:37.460Z">
+<meta property="article:modified_time" content="2019-12-18T13:53:22.395Z">
 <meta property="article:author" content="特立独型">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
@@ -204,25 +204,23 @@
       
         <p>关于Linux的基本介绍以及简单命令的概述</p>
 <a id="more"></a>
-
 <p><strong>2、linux基础知识与技能</strong><br><strong>2.1、linux内核、发行版</strong><br>linux本身指的是一个操作系统内核，只有内核是无法直接使用的。我们需要的，可以使用的操作系统是一个包含了内核和一批有用的应用程序的一个集合体，这个就叫linux发行版。<br>ubuntu、redhat就是linux的不同的发行版。</p>
 <p><strong>2.2、GUI（图形用户界面）和cmdline（命令行）</strong><br>GUI：grahics user interface，图形用户界面。<br>cmdline：command line，命令行。<br>人机交互：人和机器（计算机）进行交互，常用的有命令行和GUI。<br>Windows下既有GUI，又有命令行。linux中也是既有GUI，又有命令行。<br>但是，在linux中我们常用命令行，在Windows中常用GUI</p>
-<p><strong>2.3、linux常用命令：</strong><br>(1) <code>ls</code>（list，列表）<br><br>作用：使用列表把当前文件夹下所有文件显示出来<br>    ls -a    显示所有文件，包括隐藏文件<br>    ls -l    以详细信息显示<br>    ls -a -l<br>    ls -l -a<br>    ls -la<br>    ls -al    四种方式都是可以的</p>
-<pre><code>ls -al ~ ：列出自己主文件夹下的所有隐藏文件与相关的文件属性</code></pre><p>(2) <code>cd</code>（change directory，更改目录）<br><br>作用：用来切换目录<br>涉及到相对路径和绝对路径<br>cd ..        ..代表上一层目录<br>            .代表当前目录</p>
-<p>(3) <code>pwd</code>（print work directory，打印工作目录）<br><br>作用：打印出当前的绝对路径</p>
-<p>(4) <code>mkdir</code>（make directory，创建文件夹）<br><br>作用：创建空文件夹<br>    mkdir -p 级联创建文件夹<br>(5) <code>mv</code>（move，移动）<br><br>作用：在目录间移动文件，重命名文件<br>    mv 源文件pathname 目的文件pathname</p>
-<p>(6) <code>touch</code><br><br>作用：创建空文件<br>    touch pathname</p>
-<p>(7) <code>cp</code>（copy，复制）<br><br>作用：复制文件或文件夹<br>    cp 源文件pathname 目标文件pathname<br>    cp -r 用来复制文件夹<br>    cp -f 强制复制<br>实际操作时，一般都是cp -f复制文件，<br>cp -rf复制文件夹</p>
-<p>(8) <code>rm</code>（remove，去除，删除）<br><br>作用：用来删除文件，文件夹<br>    rm 文件pathname<br>    rm -r 文件夹pathname</p>
-<p>(9) <code>cat</code><br><br>作用：直接在命令行下显示文件内容<br>    也可以用来向文件输入，暂时不管</p>
-<p>(10)<code>rmdir</code>（remove directory，删除文件夹）<br><br>作用：删除空文件夹<br>rmdir和rm -r的区别：rmdir只能删除空文件夹，而rm -r可以删除空文件夹和非空文件夹</p>
-<p>(11) <code>ln</code>（link，连接文件）<br><br>基础：windows中快捷方式，实际上快捷方式和它指向的文件是独立的两个文件，两个都占硬盘空间，只不过用户访问快捷方式时，其效果等同于访问指向的文件。        </p>
+<p><strong>2.3、linux常用命令：</strong><br>(1) <code>ls</code>（list，列表）<br>作用：使用列表把当前文件夹下所有文件显示出来<br>    ls -a    显示所有文件，包括隐藏文件<br>    ls -l    以详细信息显示<br>    ls -a -l<br>    ls -l -a<br>    ls -la<br>    ls -al    四种方式都是可以的</p>
+<pre><code>ls -al ~ ：列出自己主文件夹下的所有隐藏文件与相关的文件属性</code></pre><p>(2) <code>cd</code>（change directory，更改目录）<br>作用：用来切换目录<br>涉及到相对路径和绝对路径<br>cd ..    ..代表上一层目录<br>            .代表当前目录</p>
+<p>(3) <code>pwd</code>（print work directory，打印工作目录）<br>作用：打印出当前的绝对路径</p>
+<p>(4) <code>mkdir</code>（make directory，创建文件夹）<br>作用：创建空文件夹<br>    mkdir -p 级联创建文件夹</p>
+<p>(5) <code>mv</code>（move，移动）<br>作用：在目录间移动文件，重命名文件<br>    mv 源文件pathname 目的文件pathname</p>
+<p>(6) <code>touch</code><br>作用：创建空文件<br>    touch pathname</p>
+<p>(7) <code>cp</code>（copy，复制）<br>作用：复制文件或文件夹<br>    cp 源文件pathname 目标文件pathname<br>    cp -r 用来复制文件夹<br>    cp -f 强制复制<br>实际操作时，一般都是cp -f复制文件，<br>cp -rf复制文件夹</p>
+<p>(8) <code>rm</code>（remove，去除，删除）<br>作用：用来删除文件，文件夹<br>    rm 文件pathname<br>    rm -r 文件夹pathname</p>
+<p>(9) <code>cat</code><br>作用：直接在命令行下显示文件内容也可以用来向文件输入，暂时不管</p>
+<p>(10)<code>rmdir</code>（remove directory，删除文件夹）<br>作用：删除空文件夹<br>rmdir和rm -r的区别：rmdir只能删除空文件夹，而rm -r可以删除空文件夹和非空文件夹</p>
+<p>(11) <code>ln</code>（link，连接文件）<br>基础：windows中快捷方式，实际上快捷方式和它指向的文件是独立的两个文件，两个都占硬盘空间，只不过用户访问快捷方式时，其效果等同于访问指向的文件。        </p>
 <p>linux中有两种连接文件：<br>一种叫软连接（符号连接），等同于windows中快捷方式<br>一种叫硬连接<br>创建软连接文件： ln -s 源文件名 符号连接文件名<br>举例：ln -s src.c，linker.c，    linker.c就是<br>src.c的一个符号连接文件</p>
 <p>硬连接：ln 源文件名 连接文件名<br>硬连接实际上和源文件在硬盘中是同一个东西，效果类似于硬盘上的一个文件，在文件系统上，在我们看来有好多个文件一样。每次删除一个文件时，只要他还有其他的硬连接存在，这个文件就不会被真正删除。只有等所有的连接文件都删除掉了，这个文件才会被真正从硬盘上删除。</p>
 <p>基础知识：<br>1、ls -l显示的详细信息中：<br>-rw-r–r–<br>drwxr-xr-x<br>一共10个字符，第一个字符表示文件类型，后面9个字符表示文件权限。<br>文件类型：</p>
-<ul>
-<li>表示普通文件。普通文件指文本文件和二进制<br>  文件，如a.c  1.txt a.out都是普通文件<br>d 表示文件夹，d是directory的缩写<br>l 表示符号连接文件，后面会用-&gt;打印出它指向的文件<br>s 表示socket文件<br>p 表示管道文件 pipe</li>
-</ul>
+<p>.表示普通文件。普通文件指文本文件和二进制文件，如a.c  1.txt a.out都是普通文件<br>d 表示文件夹，d是directory的缩写<br>l 表示符号连接文件，后面会用-&gt;打印出它指向的文件<br>s 表示socket文件<br>p 表示管道文件 pipe</p>
 
       
 
