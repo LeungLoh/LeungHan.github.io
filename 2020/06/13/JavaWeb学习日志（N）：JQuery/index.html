@@ -1,0 +1,352 @@
+<!DOCTYPE html><html data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>JavaWeb学习日志（N）：JQuery | 特立独型</title><meta name="description" content="JavaWeb学习日志（N）：JQuery"><meta name="author" content="特立独型"><meta name="copyright" content="特立独型"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="JavaWeb学习日志（N）：JQuery"><meta name="twitter:description" content="JavaWeb学习日志（N）：JQuery"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta property="og:type" content="article"><meta property="og:title" content="JavaWeb学习日志（N）：JQuery"><meta property="og:url" content="leunghan.github.io/2020/06/13/JavaWeb%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88N%EF%BC%89%EF%BC%9AJQuery/"><meta property="og:site_name" content="特立独型"><meta property="og:description" content="JavaWeb学习日志（N）：JQuery"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="leunghan.github.io/2020/06/13/JavaWeb%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88N%EF%BC%89%EF%BC%9AJQuery/"><link rel="prev" title="JavaWeb学习日志（N+1）：Ajax &amp; Json" href="/leunghan.github.io/2020/06/19/JavaWeb%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88N+1%EF%BC%89%EF%BC%9AAjax%20&amp;%20Json/"><link rel="next" title="JavaWeb学习日志（一）——HTML、CSS &amp; JavaScript入门" href="/leunghan.github.io/2020/04/29/JavaWeb%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94HTML%E3%80%81CSS%20&amp;%20JavaScript%E5%85%A5%E9%97%A8/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.1.1"></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">特立独型</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">16</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">5</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">4</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#JavaWeb学习日志（N）：JQuery"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">JavaWeb学习日志（N）：JQuery</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#JQuery-基础"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">JQuery 基础</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#概念"><span class="toc_mobile_items-number">1.1.1.</span> <span class="toc_mobile_items-text">概念</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#快速入门"><span class="toc_mobile_items-number">1.1.2.</span> <span class="toc_mobile_items-text">快速入门</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#JQuery对象和JS对象区别与转换"><span class="toc_mobile_items-number">1.1.3.</span> <span class="toc_mobile_items-text">JQuery对象和JS对象区别与转换</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#选择器"><span class="toc_mobile_items-number">1.1.4.</span> <span class="toc_mobile_items-text">选择器</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#基本操作"><span class="toc_mobile_items-number">1.1.4.1.</span> <span class="toc_mobile_items-text">基本操作</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#基本选择器"><span class="toc_mobile_items-number">1.1.4.2.</span> <span class="toc_mobile_items-text">基本选择器</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#层级选择器"><span class="toc_mobile_items-number">1.1.4.3.</span> <span class="toc_mobile_items-text">层级选择器</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#属性选择器"><span class="toc_mobile_items-number">1.1.4.4.</span> <span class="toc_mobile_items-text">属性选择器</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#过滤选择器"><span class="toc_mobile_items-number">1.1.4.5.</span> <span class="toc_mobile_items-text">过滤选择器</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#表单过滤选择器"><span class="toc_mobile_items-number">1.1.4.6.</span> <span class="toc_mobile_items-text">表单过滤选择器</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#DOM操作"><span class="toc_mobile_items-number">1.1.5.</span> <span class="toc_mobile_items-text">DOM操作</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#内容操作"><span class="toc_mobile_items-number">1.1.5.1.</span> <span class="toc_mobile_items-text">内容操作</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#属性操作"><span class="toc_mobile_items-number">1.1.5.2.</span> <span class="toc_mobile_items-text">属性操作</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#CRUD操作"><span class="toc_mobile_items-number">1.1.5.3.</span> <span class="toc_mobile_items-text">CRUD操作</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#JQuery-高级"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">JQuery 高级</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#动画"><span class="toc_mobile_items-number">1.2.1.</span> <span class="toc_mobile_items-text">动画</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#默认显示和隐藏方式"><span class="toc_mobile_items-number">1.2.1.1.</span> <span class="toc_mobile_items-text">默认显示和隐藏方式</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#滑动显示和隐藏方式"><span class="toc_mobile_items-number">1.2.1.2.</span> <span class="toc_mobile_items-text">滑动显示和隐藏方式</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#淡入淡出显示和隐藏方式"><span class="toc_mobile_items-number">1.2.1.3.</span> <span class="toc_mobile_items-text">淡入淡出显示和隐藏方式</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#遍历"><span class="toc_mobile_items-number">1.2.2.</span> <span class="toc_mobile_items-text">遍历</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#js遍历方式"><span class="toc_mobile_items-number">1.2.2.1.</span> <span class="toc_mobile_items-text">js遍历方式</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#jq遍历方式"><span class="toc_mobile_items-number">1.2.2.2.</span> <span class="toc_mobile_items-text">jq遍历方式</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#事件绑定"><span class="toc_mobile_items-number">1.2.3.</span> <span class="toc_mobile_items-text">事件绑定</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#jquery标准的绑定方式"><span class="toc_mobile_items-number">1.2.3.1.</span> <span class="toc_mobile_items-text">jquery标准的绑定方式</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#on绑定事件-off解除绑定"><span class="toc_mobile_items-number">1.2.3.2.</span> <span class="toc_mobile_items-text">on绑定事件&#x2F;off解除绑定</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#事件切换"><span class="toc_mobile_items-number">1.2.3.3.</span> <span class="toc_mobile_items-text">事件切换</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#插件：增强JQuery的功能"><span class="toc_mobile_items-number">1.2.4.</span> <span class="toc_mobile_items-text">插件：增强JQuery的功能</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaWeb学习日志（N）：JQuery"><span class="toc-number">1.</span> <span class="toc-text">JavaWeb学习日志（N）：JQuery</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery-基础"><span class="toc-number">1.1.</span> <span class="toc-text">JQuery 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-number">1.1.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快速入门"><span class="toc-number">1.1.2.</span> <span class="toc-text">快速入门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JQuery对象和JS对象区别与转换"><span class="toc-number">1.1.3.</span> <span class="toc-text">JQuery对象和JS对象区别与转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择器"><span class="toc-number">1.1.4.</span> <span class="toc-text">选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本操作"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">基本操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基本选择器"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">基本选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#层级选择器"><span class="toc-number">1.1.4.3.</span> <span class="toc-text">层级选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性选择器"><span class="toc-number">1.1.4.4.</span> <span class="toc-text">属性选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#过滤选择器"><span class="toc-number">1.1.4.5.</span> <span class="toc-text">过滤选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#表单过滤选择器"><span class="toc-number">1.1.4.6.</span> <span class="toc-text">表单过滤选择器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM操作"><span class="toc-number">1.1.5.</span> <span class="toc-text">DOM操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内容操作"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">内容操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性操作"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">属性操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CRUD操作"><span class="toc-number">1.1.5.3.</span> <span class="toc-text">CRUD操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JQuery-高级"><span class="toc-number">1.2.</span> <span class="toc-text">JQuery 高级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#动画"><span class="toc-number">1.2.1.</span> <span class="toc-text">动画</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#默认显示和隐藏方式"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">默认显示和隐藏方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#滑动显示和隐藏方式"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">滑动显示和隐藏方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#淡入淡出显示和隐藏方式"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">淡入淡出显示和隐藏方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遍历"><span class="toc-number">1.2.2.</span> <span class="toc-text">遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#js遍历方式"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">js遍历方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jq遍历方式"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">jq遍历方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件绑定"><span class="toc-number">1.2.3.</span> <span class="toc-text">事件绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#jquery标准的绑定方式"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">jquery标准的绑定方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#on绑定事件-off解除绑定"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">on绑定事件&#x2F;off解除绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事件切换"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">事件切换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插件：增强JQuery的功能"><span class="toc-number">1.2.4.</span> <span class="toc-text">插件：增强JQuery的功能</span></a></li></ol></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png)"><div id="post-info"><div id="post-title"><div class="posttitle">JavaWeb学习日志（N）：JQuery</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2020-06-13<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2020-06-17</time><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="JavaWeb学习日志（N）：JQuery"><a href="#JavaWeb学习日志（N）：JQuery" class="headerlink" title="JavaWeb学习日志（N）：JQuery"></a>JavaWeb学习日志（N）：JQuery</h1><h2 id="JQuery-基础"><a href="#JQuery-基础" class="headerlink" title="JQuery 基础"></a>JQuery 基础</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>JQuery是一个快速、简洁的JavaScript框架，它封装JavaScript常用的功能代码，提供一种简便的JavaScript设计模式，优化HTML文档操作、事件处理、动画设计和Ajax交互。</p>
+<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><ol>
+<li><p><strong>下载JQuery</strong></p>
+<ul>
+<li>1.x：兼容ie678,使用最为广泛的，官方只做BUG维护，功能不再新增。因此一般项目来说，使用1.x版本就可以了，最终版本：1.12.4 (2016年5月20日)</li>
+<li>2.x：不兼容ie678，很少有人使用，官方只做BUG维护，功能不再新增。如果不考虑兼容低版本的浏览器可以使用2.x，最终版本：2.2.4 (2016年5月20日)</li>
+<li>3.x：不兼容ie678，只支持最新的浏览器。除非特殊要求，一般不会使用3.x版本的，很多老的jQuery插件不支持这个版本。 目前该版本是官方主要更新维护的版本。最新版本：3.2.1（2017年3月20日）</li>
+<li>jquery-xxx.js 与 jquery-xxx.min.js区别：<ul>
+<li>jquery-xxx.js：开发版本。给程序员看的，有良好的缩进和注释。体积大一些</li>
+<li>jquery-xxx.min.js：生产版本。程序中使用，没有缩进。体积小一些。程序加载更快</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>导入JQuery的js文件：</strong>导入min.js文件</p>
+</li>
+<li><p><strong>使用：</strong><code>var div1 = $(&quot;#div1&quot;);</code></p>
+</li>
+</ol>
+<h3 id="JQuery对象和JS对象区别与转换"><a href="#JQuery对象和JS对象区别与转换" class="headerlink" title="JQuery对象和JS对象区别与转换"></a>JQuery对象和JS对象区别与转换</h3><ol>
+<li>JQuery对象在操作时，更加方便</li>
+<li>JQuery对象和js对象方法不通用的</li>
+<li>两者相互转换<ul>
+<li>jq – &gt; js : jq对象[索引] 或者 jq对象.get(索引)</li>
+<li>js – &gt; jq : $(js对象)</li>
+</ul>
+</li>
+</ol>
+<h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><ul>
+<li><strong>事件绑定</strong><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">javascript</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.获取b1按钮</span></span><br><span class="line">$(<span class="string">"#b1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"abc"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div></li>
+<li><strong>入口函数</strong><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">javascript</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">window.onload  和 $(function) 区别</span></span><br><span class="line"><span class="comment">    * window.onload 只能定义一次,如果定义多次，后边的会将前边的覆盖掉</span></span><br><span class="line"><span class="comment">    * $(function)可以定义多次的。</span></span><br><span class="line"><span class="comment">* /</span></span><br></pre></td></tr></table></figure></div></li>
+<li><strong>样式控制</strong><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">javascript</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#div1"</span>).css(<span class="string">"background-color"</span>,<span class="string">"red"</span>);</span><br><span class="line">$(<span class="string">"#div1"</span>).css(<span class="string">"backgroundColor"</span>,<span class="string">"pink"</span>);</span><br></pre></td></tr></table></figure></div>
+
+</li>
+</ul>
+<h4 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h4><ol>
+<li><strong>标签选择器（元素选择器）</strong><ul>
+<li>语法： <code>$(&quot;html标签名&quot;)</code> 获得所有匹配标签名称的元素</li>
+</ul>
+</li>
+<li><strong>id选择器</strong> <ul>
+<li>语法： <code>$(&quot;#id的属性值&quot;)</code> 获得与指定id属性值匹配的元素</li>
+</ul>
+</li>
+<li><strong>类选择器</strong><ul>
+<li>语法： <code>$(&quot;.class的属性值&quot;)</code> 获得与指定的class属性值匹配的元素</li>
+</ul>
+</li>
+<li><strong>并集选择器</strong><ul>
+<li>语法： <code>$(&quot;选择器1,选择器2....&quot;)</code> 获取多个选择器选中的所有元素</li>
+</ul>
+</li>
+</ol>
+<h4 id="层级选择器"><a href="#层级选择器" class="headerlink" title="层级选择器"></a>层级选择器</h4><ol>
+<li><strong>后代选择器</strong><ul>
+<li>语法： <code>$(&quot;A B &quot;)</code> 选择A元素内部的所有B元素        </li>
+</ul>
+</li>
+<li><strong>子选择器</strong><ul>
+<li>语法： <code>$(&quot;A &gt; B&quot;)</code> 选择A元素内部的所有B子元素</li>
+</ul>
+</li>
+</ol>
+<h4 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h4><ol>
+<li>*<em>属性名称选择器 *</em><ul>
+<li>语法： <code>$(&quot;A[属性名]&quot;)</code> 包含指定属性的选择器</li>
+</ul>
+</li>
+<li><strong>属性选择器</strong><ul>
+<li>语法： <code>$(&quot;A[属性名=&#39;值&#39;]&quot;)</code> 包含指定属性等于指定值的选择器</li>
+<li>注意：<ul>
+<li><code>属性名!=&#39;值&#39;</code>: 包含指定属性<strong>不等于</strong>指定值的选择器</li>
+<li><code>属性名^=&#39;值&#39;</code>: 包含指定属性以指定值<strong>开头</strong>的选择器</li>
+<li><code>属性名$=&#39;值&#39;</code>: 包含指定属性以指定值<strong>结尾</strong>的选择器</li>
+<li><code>属性名*=&#39;值&#39;</code>: 包含指定属性<strong>包含</strong>指定值的选择器</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>复合属性选择器</strong><ul>
+<li>语法：<code>$(&quot;A[属性名=&#39;值&#39;]...[]&quot;)</code> 包含多个属性条件的选择器</li>
+</ul>
+</li>
+</ol>
+<h4 id="过滤选择器"><a href="#过滤选择器" class="headerlink" title="过滤选择器"></a>过滤选择器</h4><ol>
+<li><strong>首元素选择器</strong> <ul>
+<li>语法：<code>:first</code> 获得选择的元素中的第一个元素</li>
+</ul>
+</li>
+<li><strong>尾元素选择器</strong> <ul>
+<li>语法：<code>:last</code> 获得选择的元素中的最后一个元素</li>
+</ul>
+</li>
+<li><strong>非元素选择器</strong><ul>
+<li>语法：<code>:not(selector)</code> 不包括指定内容的元素</li>
+</ul>
+</li>
+<li><strong>偶数选择器</strong><ul>
+<li>语法：<code>:even</code> 偶数，从 0 开始计数</li>
+</ul>
+</li>
+<li><strong>奇数选择器</strong><ul>
+<li>语法：<code>:odd</code> 奇数，从 0 开始计数</li>
+</ul>
+</li>
+<li><strong>等于索引选择器</strong><ul>
+<li>语法：<code>:eq(index)</code> 指定索引元素</li>
+</ul>
+</li>
+<li><strong>大于索引选择器</strong> <ul>
+<li>语法： <code>:gt(index)</code> 大于指定索引元素</li>
+</ul>
+</li>
+<li><strong>小于索引选择器</strong> <ul>
+<li>语法：<code>:lt(index)</code> 小于指定索引元素</li>
+</ul>
+</li>
+<li><strong>标题选择器</strong><ul>
+<li>语法：<code>:header</code>  获得标题（h1~h6）元素，固定写法</li>
+</ul>
+</li>
+</ol>
+<h4 id="表单过滤选择器"><a href="#表单过滤选择器" class="headerlink" title="表单过滤选择器"></a>表单过滤选择器</h4><ol>
+<li><strong>可用元素选择器</strong> <ul>
+<li>语法： <code>:enabled</code> 获得可用元素</li>
+</ul>
+</li>
+<li><strong>不可用元素选择器</strong> <ul>
+<li>语法： <code>:disabled</code> 获得不可用元素</li>
+</ul>
+</li>
+<li><strong>选中选择器 （单选/复选框）</strong><ul>
+<li>语法： <code>:checked</code> 获得单选/复选框选中的元素</li>
+</ul>
+</li>
+<li><strong>选中选择器 （下拉列表）</strong><ul>
+<li>语法： <code>:selected</code> 获得下拉框选中的元素</li>
+</ul>
+</li>
+</ol>
+<h3 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h3><h4 id="内容操作"><a href="#内容操作" class="headerlink" title="内容操作"></a>内容操作</h4><ol>
+<li><code>html()</code>: 获取/设置元素的标签体内容</li>
+<li><code>text()</code>: 获取/设置元素的标签体纯文本内容</li>
+<li><code>val()</code>： 获取/设置元素的value属性值</li>
+</ol>
+<h4 id="属性操作"><a href="#属性操作" class="headerlink" title="属性操作"></a>属性操作</h4><ol>
+<li><p><strong>通用属性操作</strong> </p>
+<ul>
+<li><code>attr()</code>: 获取/设置元素的属性，如果操作的是元素自定义的属性，则建议使用attr</li>
+<li><code>removeAttr()</code>:删除属性</li>
+<li><code>prop()</code>:获取/设置元素的属性，如果操作的是元素的固有属性，则建议使用prop</li>
+<li><code>removeProp()</code>:删除属性</li>
+</ul>
+</li>
+<li><p><strong>class属性操作</strong> </p>
+<ul>
+<li><code>addClass()</code>:添加class属性值</li>
+<li><code>removeClass()</code>:删除class属性值</li>
+<li><code>toggleClass()</code>:切换class属性</li>
+</ul>
+</li>
+</ol>
+<h4 id="CRUD操作"><a href="#CRUD操作" class="headerlink" title="CRUD操作"></a>CRUD操作</h4><ol>
+<li><code>append()</code>:父元素将子元素追加到末尾<ul>
+<li>对象1.append(对象2): 将对象2添加到对象1元素内部，并且在末尾</li>
+</ul>
+</li>
+<li><code>prepend()</code>:父元素将子元素追加到开头<ul>
+<li>对象1.prepend(对象2):将对象2添加到对象1元素内部，并且在开头</li>
+</ul>
+</li>
+<li><code>appendTo()</code>:<ul>
+<li>对象1.appendTo(对象2):将对象1添加到对象2内部，并且在末尾</li>
+</ul>
+</li>
+<li><code>prependTo()</code>：<ul>
+<li>对象1.prependTo(对象2):将对象1添加到对象2内部，并且在开头</li>
+</ul>
+</li>
+<li><code>after()</code>:添加元素到元素后边<ul>
+<li>对象1.after(对象2)： 将对象2添加到对象1后边。对象1和对象2是兄弟关系</li>
+</ul>
+</li>
+<li><code>before()</code>:添加元素到元素前边<ul>
+<li>对象1.before(对象2)： 将对象2添加到对象1前边。对象1和对象2是兄弟关系</li>
+</ul>
+</li>
+<li><code>insertAfter()</code>:添加元素到元素后边<ul>
+<li>对象1.insertAfter(对象2)：将对象2添加到对象1后边。对象1和对象2是兄弟关系</li>
+</ul>
+</li>
+<li><code>insertBefore()</code>:添加元素到元素前边<ul>
+<li>对象1.insertBefore(对象2)： 将对象2添加到对象1前边。对象1和对象2是兄弟关系</li>
+</ul>
+</li>
+<li><code>remove()</code>:移除元素<ul>
+<li>对象.remove():将对象删除掉</li>
+</ul>
+</li>
+<li><code>empty()</code>:清空元素的所有后代元素。<ul>
+<li>对象.empty():将对象的后代元素全部清空，但是保留当前对象以及其属性节点</li>
+</ul>
+</li>
+</ol>
+<h2 id="JQuery-高级"><a href="#JQuery-高级" class="headerlink" title="JQuery 高级"></a>JQuery 高级</h2><h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><h4 id="默认显示和隐藏方式"><a href="#默认显示和隐藏方式" class="headerlink" title="默认显示和隐藏方式"></a>默认显示和隐藏方式</h4><ol>
+<li><code>show([speed,[easing],[fn]])</code><ul>
+<li>speed：动画速度，三个预定义值(“slow”,”normal”, “fast”)或表示动画时长的毫秒数值</li>
+<li>easing：用来指定切换效果，默认是“swing”，可用参数“linear“<ul>
+<li>swing：动画执行时效果是 先慢，中间快，最后又慢</li>
+<li>linear：动画执行时速度是匀速的</li>
+</ul>
+</li>
+<li>fn：在动画完成时执行的函数，每个元素执行一次</li>
+</ul>
+</li>
+<li><code>hide([speed,[easing],[fn]])</code></li>
+<li><code>toggle([speed],[easing],[fn])</code></li>
+</ol>
+<h4 id="滑动显示和隐藏方式"><a href="#滑动显示和隐藏方式" class="headerlink" title="滑动显示和隐藏方式"></a>滑动显示和隐藏方式</h4><ol>
+<li><code>slideDown([speed,[easing],[fn]])</code><ul>
+<li>speed：动画速度，三个预定义值(“slow”,”normal”, “fast”)或表示动画时长的毫秒数值</li>
+<li>easing：用来指定切换效果，默认是“swing”，可用参数“linear“<ul>
+<li>swing：动画执行时效果是 先慢，中间快，最后又慢</li>
+<li>linear：动画执行时速度是匀速的</li>
+</ul>
+</li>
+<li>fn：在动画完成时执行的函数，每个元素执行一次</li>
+</ul>
+</li>
+<li><code>slideUp([speed,[easing],[fn]])</code></li>
+<li><code>slideToggle([speed],[easing],[fn])</code></li>
+</ol>
+<h4 id="淡入淡出显示和隐藏方式"><a href="#淡入淡出显示和隐藏方式" class="headerlink" title="淡入淡出显示和隐藏方式"></a>淡入淡出显示和隐藏方式</h4><ol>
+<li><code>fadeIn([speed,[easing],[fn]])</code><ul>
+<li>speed：动画速度，三个预定义值(“slow”,”normal”, “fast”)或表示动画时长的毫秒数值</li>
+<li>easing：用来指定切换效果，默认是“swing”，可用参数“linear“<ul>
+<li>swing：动画执行时效果是 先慢，中间快，最后又慢</li>
+<li>linear：动画执行时速度是匀速的</li>
+</ul>
+</li>
+<li>fn：在动画完成时执行的函数，每个元素执行一次</li>
+</ul>
+</li>
+<li><code>fadeOut([speed,[easing],[fn]])</code></li>
+<li><code>fadeToggle([speed],[easing],[fn])</code></li>
+</ol>
+<h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><h4 id="js遍历方式"><a href="#js遍历方式" class="headerlink" title="js遍历方式"></a>js遍历方式</h4><p><code>for(初始化值;循环结束条件;步长)</code></p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for (var i &#x3D;0; i &lt; citys.length; i++)&#123;</span><br><span class="line">    if(&quot;上海&quot; &#x3D;&#x3D; citys[i].innerHTML)&#123;</span><br><span class="line">    	break;</span><br><span class="line">	&#125;</span><br><span class="line">	alert(i + &quot;:&quot; + citys[i].innerHTML);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="jq遍历方式"><a href="#jq遍历方式" class="headerlink" title="jq遍历方式"></a>jq遍历方式</h4><ol>
+<li><p><code>jq对象.each(callback)</code></p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">javascript</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">citys.each(<span class="function"><span class="keyword">function</span> (<span class="params">index, element</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//获取li对象第一种方式</span></span><br><span class="line">    <span class="comment">// alert(this.innerHTML);      //无法得到索引</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="string">"上海"</span> == $(element).html())&#123;</span><br><span class="line">        <span class="comment">//如果当前function返回为false，则结束循环（break）</span></span><br><span class="line">        <span class="comment">//如果当前function返回为true，则结束本次循环，继续下次循环（continue）</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//获取li对象第二种方式,在回调函数中定义参数index(索引)， element(元素对象)</span></span><br><span class="line">    alert(index + <span class="string">":"</span> + $(element).html());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div></li>
+<li><p><code>$.each(object, [callback])</code></p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">javascript</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.each(citys, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	alert($(<span class="keyword">this</span>).html());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><code>for..of:</code></p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">javascript</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (li <span class="keyword">of</span> citys)&#123;</span><br><span class="line">	alert($(li).html())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+</li>
+</ol>
+<h3 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h3><h4 id="jquery标准的绑定方式"><a href="#jquery标准的绑定方式" class="headerlink" title="jquery标准的绑定方式"></a>jquery标准的绑定方式</h4><p><code>jq对象.绑定事件(回调函数)</code>：注：如果调用事件方法，不传递回调函数，则会触发浏览器默认行为。</p>
+<h4 id="on绑定事件-off解除绑定"><a href="#on绑定事件-off解除绑定" class="headerlink" title="on绑定事件/off解除绑定"></a>on绑定事件/off解除绑定</h4><ol>
+<li><code>jq对象.on(&quot;事件名称&quot;,回调函数)</code></li>
+<li><code>jq对象.off(&quot;事件名称&quot;)</code><ul>
+<li>如果off方法不传递任何参数，则将组件上的所有事件全部解绑</li>
+</ul>
+</li>
+</ol>
+<h4 id="事件切换"><a href="#事件切换" class="headerlink" title="事件切换"></a>事件切换</h4><p><code>jq对象.toggle(fn1,fn2...)</code>：当单击jq对象对应的组件后，会执行fn1.第二次点击会执行fn2…..</p>
+<p>注意：1.9版本 .toggle() 方法删除,jQuery Migrate（迁移）插件可以恢复此功能。</p>
+<h3 id="插件：增强JQuery的功能"><a href="#插件：增强JQuery的功能" class="headerlink" title="插件：增强JQuery的功能"></a>插件：增强JQuery的功能</h3><ol>
+<li><code>$.fn.extend(object)</code> <ul>
+<li>增强通过Jquery获取的对象的功能  $(“#id”)</li>
+</ul>
+</li>
+<li><code>$.extend(object)</code><ul>
+<li>增强JQeury对象自身的功能  $/jQuery</li>
+</ul>
+</li>
+</ol>
+</div></article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2020/06/19/JavaWeb%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88N+1%EF%BC%89%EF%BC%9AAjax%20&amp;%20Json/"><img class="prev_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>JavaWeb学习日志（N+1）：Ajax &amp; Json</span></div></a></div><div class="next-post pull_right"><a href="/2020/04/29/JavaWeb%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94HTML%E3%80%81CSS%20&amp;%20JavaScript%E5%85%A5%E9%97%A8/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>JavaWeb学习日志（一）——HTML、CSS &amp; JavaScript入门</span></div></a></div></nav></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By 特立独型</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/tw_cn.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script></body></html>
